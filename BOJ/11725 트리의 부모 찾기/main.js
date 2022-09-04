@@ -1,5 +1,5 @@
 const solution = (edges) => {
-  const tree = ['', { parent: null, degree: 1 }];
+  const tree = [null, { parent: null, degree: 1 }];
   edges.forEach((edge) => {
     let parent = edge[0];
     let child = edge[1];
@@ -8,8 +8,9 @@ const solution = (edges) => {
   });
   console.log(
     tree.reduce((acc, curr) =>
-      curr.parent ? acc.concat(`${curr.parent}\n`) : acc
-    )
+      curr && curr.parent ? acc.concat(`${curr.parent}\n`) : acc
+    ),
+    ''
   );
 };
 
