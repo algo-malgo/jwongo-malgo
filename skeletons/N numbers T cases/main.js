@@ -7,7 +7,7 @@ const [N, numbers, T, ...cases] = inputs;
 
 console.log(
   solution(
-    numbers.split(' ').map((c) => +c),
-    cases.map((nums) => nums.split(' ').map((c) => +c))
+    numbers.split(' ').map(Number),
+    cases.map((nums) => nums.split(' ').map(Number))
   )
 );

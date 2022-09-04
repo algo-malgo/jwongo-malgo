@@ -7,7 +7,7 @@ const [line, ...numbers] = lines;
 
 console.log(
   solution(
-    ...line.split(' ').map((c) => +c),
-    numbers.map((s) => s.split(' ').map((c) => +c))
+    ...line.split(' ').map(Number),
+    numbers.map((s) => s.split(' ').map(Number))
   )
 );
