@@ -14,7 +14,7 @@ for (c of cases) {
     N = +MNK[1];
     K = +MNK[2];
   } else if (positions.length < K) {
-    positions.push(c.split(' ').map((char) => +char));
+    positions.push(c.split(' ').map(Number));
     if (positions.length === K) {
       console.log(M, N, K, positions);
       M = undefined;
