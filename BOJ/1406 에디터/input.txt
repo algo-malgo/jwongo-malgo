@@ -1,11 +1,6 @@
-abc
-9
+a
+4
 L
 L
-L
-L
-L
+D
 P x
-L
-B
-P y

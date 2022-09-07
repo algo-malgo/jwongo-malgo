@@ -1,37 +1,35 @@
 const solution = (initialString, commands) => {
-  let sentence = initialString;
-  let cursor = sentence.length;
+  const left = initialString.split('');
+  const right = [];
+  let cursor = initialString.length;
   commands.forEach((command) => {
     switch (command[0]) {
       case 'L':
-        if (cursor) cursor--;
+        if (cursor) {
+          right.push(left.pop());
+          cursor--;
+        }
         break;
       case 'D':
-        if (cursor < sentence.length) cursor++;
+        if (cursor < left.length + right.length) {
+          left.push(right.pop());
+          cursor++;
+        }
         break;
       case 'B':
         if (cursor) {
-          if (cursor === sentence.length)
-            sentence = sentence.slice(0, cursor - 1);
-          else
-            sentence =
-              sentence.slice(0, cursor - 1) +
-              sentence.slice(cursor, sentence.length);
+          left.pop();
           cursor--;
         }
         break;
       case 'P':
-        if (cursor === sentence.length) sentence = sentence + command[2];
-        else
-          sentence =
-            sentence.slice(0, cursor) +
-            command[2] +
-            sentence.slice(cursor, sentence.length);
+        left.push(command[2]);
         cursor++;
         break;
     }
   });
-  return sentence;
+  right.reverse();
+  return left.join('') + right.join('');
 };
 
 const fs = require('fs');
