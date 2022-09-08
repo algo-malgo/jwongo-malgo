@@ -14,9 +14,9 @@ const solution = (N, R, edges) => {
     cnt++;
     answer[vertex] = cnt;
     visited[vertex] = true;
-    graph[vertex].forEach((next) => {
-      visited[next] || dfs(next);
-    });
+    for (let i = 0; i < graph[vertex].length; i++) {
+      visited[graph[vertex][i]] || dfs(graph[vertex][i]);
+    }
   };
   dfs(R);
   return answer.slice(1).join('\n');
