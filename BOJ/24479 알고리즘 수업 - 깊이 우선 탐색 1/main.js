@@ -5,7 +5,7 @@ const solution = (N, R, edges) => {
     graph[edge[1]].push(edge[0]);
   });
   graph.forEach((vertex) => {
-    vertex.sort((a, b) => b - a);
+    vertex.sort((a, b) => a - b);
   });
   const visited = Array(N + 1).fill(false);
   const answer = Array(N + 1).fill(0);
@@ -14,10 +14,9 @@ const solution = (N, R, edges) => {
     cnt++;
     answer[vertex] = cnt;
     visited[vertex] = true;
-    while (graph[vertex].length) {
-      const next = graph[vertex].pop();
+    graph[vertex].forEach((next) => {
       visited[next] || dfs(next);
-    }
+    });
   };
   dfs(R);
   return answer.slice(1).join('\n');
