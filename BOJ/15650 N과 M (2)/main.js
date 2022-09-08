@@ -16,7 +16,7 @@ const solution = (N, M) => {
       .fill(null)
       .map((_, idx) => idx + 1),
     M
-  ).forEach((p) => console.log(...p));
+  ).forEach((c) => console.log(...c));
 };
 
 const fs = require('fs');
