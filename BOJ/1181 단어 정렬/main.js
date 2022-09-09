@@ -1,14 +1,15 @@
 const solution = (words) => {
   const set = new Set(words);
-  words = [...set].sort((a, b) => {
-    if (a.length === b.length) {
-      if (a > b) return 1;
-      else return -1;
-    } else {
-      return a.length - b.length;
-    }
-  });
-  return words.join('\n');
+  return [...set]
+    .sort((a, b) => {
+      if (a.length === b.length) {
+        if (a > b) return 1;
+        else return -1;
+      } else {
+        return a.length - b.length;
+      }
+    })
+    .join('\n');
 };
 
 const fs = require('fs');
