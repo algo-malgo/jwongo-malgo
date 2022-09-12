@@ -7,8 +7,7 @@ const solution = (N, M) => {
   const dfs = (arr) => {
     if (arr.length === M) answer.push(arr);
     else {
-      let i = arr.length ? arr[arr.length - 1] + 1 : 1;
-      for (; i <= N; i++) {
+      for (let i = 1; i <= N; i++) {
         if (!visited[i]) {
           visited[i] = true;
           dfs([...arr, i]);
