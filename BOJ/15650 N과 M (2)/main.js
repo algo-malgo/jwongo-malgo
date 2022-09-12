@@ -1,31 +1,32 @@
 const solution = (N, M) => {
-  const getCombinations = (arr, selectNumber) => {
-    const results = [];
-    if (selectNumber === 1) return arr.map((el) => [el]);
-    arr.forEach((fixed, index, origin) => {
-      const rest = origin.slice(index + 1);
-      const combinations = getCombinations(rest, selectNumber - 1);
-      const attached = combinations.map((el) => [fixed, ...el]);
-      results.push(...attached);
-    });
-    return results;
-  };
+  const answer = [];
 
-  getCombinations(
-    Array(N)
-      .fill(null)
-      .map((_, idx) => idx + 1),
-    M
-  ).forEach((c) => console.log(...c));
+  const visited = Array(N + 1).fill(false);
+  visited[0] = null;
+
+  const dfs = (arr) => {
+    if (arr.length === M) answer.push(arr);
+    else {
+      const thisVisited = [];
+      for (let i = 1; i <= N; i++) {
+        if (!visited[i]) {
+          visited[i] = true;
+          dfs([...arr, i]);
+          thisVisited.push(i);
+        }
+      }
+      for (let i = 0; i < thisVisited.length; i++) {
+        visited[thisVisited[i]] = false;
+      }
+    }
+  };
+  dfs([]);
+  // console.log(answer);
+  return answer.map((arr) => arr.join(' ')).join('\n');
 };
 
 const fs = require('fs');
 const file = process.platform === 'linux' ? '/dev/stdin' : './input.txt';
-const [N, M] = fs
-  .readFileSync(file)
-  .toString()
-  .trim()
-  .split(' ')
-  .map((c) => +c);
+const [N, M] = fs.readFileSync(file).toString().trim().split(' ').map(Number);
 
-solution(N, M);
+console.log(solution(N, M));
