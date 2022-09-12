@@ -7,21 +7,17 @@ const solution = (N, M) => {
   const dfs = (arr) => {
     if (arr.length === M) answer.push(arr);
     else {
-      const thisVisited = [];
-      for (let i = 1; i <= N; i++) {
+      let i = arr.length ? arr[arr.length - 1] + 1 : 1;
+      for (; i <= N; i++) {
         if (!visited[i]) {
           visited[i] = true;
           dfs([...arr, i]);
-          thisVisited.push(i);
+          visited[i] = false;
         }
-      }
-      for (let i = 0; i < thisVisited.length; i++) {
-        visited[thisVisited[i]] = false;
       }
     }
   };
   dfs([]);
-  // console.log(answer);
   return answer.map((arr) => arr.join(' ')).join('\n');
 };
 
