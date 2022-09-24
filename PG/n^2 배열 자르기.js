@@ -1,11 +1,10 @@
 function solution(n, left, right) {
-  const answer = Array.from(Array(n), () => Array(n).fill(-1));
-  answer[0][0] = 1;
-  for (let i = 2; i <= n; i++) {
-    for (let j = 0; j < i; j++) {
-      answer[j][i - 1] = i;
-      answer[i - 1][j] = i;
+  const answer = [1];
+  for (let i = 2n; i <= n; i = i + 1n) {
+    for (let j = 0n; j < i; j = j + 1n) {
+      answer[BigInt(n) * j + (i - 1n)] = i;
+      answer[BigInt(n) * (i - 1n) + j] = i;
     }
   }
-  return answer.flat().slice(left, right + 1);
+  return answer.slice(left, right + 1);
 }
