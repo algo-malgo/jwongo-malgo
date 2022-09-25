@@ -1,11 +1,10 @@
 const solution = (A, B, C) => {
   A = BigInt(A);
   C = BigInt(C);
-  const isEven = B % 2 === 0;
   const pow = (exponent) => {
     if (exponent === 1) return A % C;
     const half = pow(Math.floor(exponent / 2));
-    if (isEven) return (half * half) % C;
+    if (exponent % 2 === 0) return (half * half) % C;
     return (((half * half) % C) * (A % C)) % C;
   };
   return pow(B).toString();
