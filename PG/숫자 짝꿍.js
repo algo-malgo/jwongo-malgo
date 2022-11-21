@@ -1,12 +1,10 @@
 function solution(X, Y) {
   const numbers = [];
-  const strX = X.toString();
-  for (const char of strX) {
+  for (const char of X) {
     numbers[+char] = numbers[+char] + 1 || 1;
   }
-  const strY = Y.toString();
   const common = [];
-  for (const char of strY) {
+  for (const char of Y) {
     if (numbers[+char]) {
       common.push(char);
       numbers[+char]--;
