@@ -2,15 +2,14 @@ function solution(X, Y) {
   const numbers = [];
   const strX = X.toString();
   for (const char of strX) {
-    numbers.push(char);
+    numbers[+char] = numbers[+char] + 1 || 1;
   }
   const strY = Y.toString();
   const common = [];
   for (const char of strY) {
-    const idx = numbers.indexOf(char);
-    if (idx > -1) {
-      numbers.splice(idx, 1);
+    if (numbers[+char]) {
       common.push(char);
+      numbers[+char]--;
     }
   }
   if (!common.length) return '-1';
