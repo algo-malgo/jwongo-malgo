@@ -1,11 +1,13 @@
 const solution = (pokemons, quiz) => {
   const answer = [];
+  const pokemonMap = new Map();
+  const indexMap = new Map();
+  pokemons.forEach((pokemon, idx) => {
+    pokemonMap.set(pokemon, idx + 1);
+    indexMap.set(idx + 1, pokemon);
+  });
   quiz.forEach((q) => {
-    if (isNaN(+q)) {
-      answer.push(pokemons.indexOf(q) + 1);
-    } else {
-      answer.push(pokemons[Number(q) - 1]);
-    }
+    answer.push(isNaN(+q) ? pokemonMap.get(q) : indexMap.get(+q));
   });
   return answer.join('\n');
 };
